@@ -13,8 +13,7 @@ IP=$(zenity --forms --title="IP ekle" \
 touch nmap_tarama_sonucu.txt
 
 while :
-do
-	
+do 
 	if [ $IP != -1 ]
 	then
 		tarama_cesidi=$(zenity --list \
@@ -59,7 +58,8 @@ do
 	
 		if [ $tarama_cesidi != -1 ]
 		then
-			(echo "0" ; sleep 2
+			(
+			echo "0" ; sleep 2
 			echo "# NMAP taramayi gerceklestiriyor..." ; sleep 1
 			echo "25" ; sleep 2
 			echo "# NMAP taramayi gerceklestiriyor..." ; sleep 1
@@ -73,15 +73,15 @@ do
 	  			--title="NMAP Taramayi gerceklestiriyor" \
 	  			--text="NMAP taramasi bitti!" \
 	  			--percentage=0
-	
+			
 			zenity 	--info\
 				--text="Nmap tarama sonucu, bulundugunuz dizinde bulunan \" nmap_tarama_sonucu.txt\" dosyasina yazilmistir."
 			
-			secim=$(zenity --forms --title="devam" \
-			--text="Devam etmek icin \"devam\" yaziniz." \
-			--separator="," \
-			--add-entry="Secenek")
-		
+			secim=$(zenity --forms --title="Secim Yap" \
+				--text="Devam etmek icin \"devam\" giriniz." \
+				--separator="," \
+				--add-entry="Secenek")
+			
 			if [ $secim == "devam" ]
 			then
 				continue
@@ -91,7 +91,10 @@ do
 		else
 			zenity 	--info\
 				--text="Cikis isleminiz alinmistir. Iyi gunler dileriz..."
+			break
 		fi
+	else
+		break
 	fi
 done
 
